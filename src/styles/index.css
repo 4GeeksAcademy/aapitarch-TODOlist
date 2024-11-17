@@ -10,3 +10,55 @@
     import 'relative/path/to/stylesheet.scss';
 
 */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 20px;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.task-input {
+    width: 300px;
+    padding: 10px;
+    margin-top: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.todo-list {
+    margin-top: 20px;
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.todo-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #fff;
+    padding: 10px;
+    margin-bottom: 5px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    transition: background 0.3s;
+}
+
+.todo-item:hover {
+    background: #f9f9f9;
+}
+
+.delete-button {
+    display: none;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+}
+  
+  .todo-item:hover .delete-button {
+    display: block;
+}
