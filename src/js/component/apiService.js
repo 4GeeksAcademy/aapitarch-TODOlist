@@ -47,7 +47,7 @@ export const updateTask = async (task) => {
     }
 };
 
-export const deleteTask = async (task) => {
+export const deleteTask = async (taskmo) => {
     try {
         const resp = await fetch(API_URL, {
             method: "DELETE",
