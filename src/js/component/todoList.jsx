@@ -25,15 +25,29 @@ const TodoList = () => {
       headers: {
         'Content-Type': 'application/json'
       }
-    }).then(resp => resp.json()).then(/*respJson*/() => {
+    }).then(resp => resp.json()).then(() => {
       fetch('https://playground.4geeks.com/todo/users/aapitarch')
         .then(resp => resp.json())
         .then(respJson => {
           setTasks(respJson.todos);
         })
-      //const newTasks = [...task, respJson];
-      //setTasks([...newTasks])
     })
+  }
+
+  const deleteTask = async (taskId) => {
+        await fetch(`https://playground.4geeks.com/todo/todos/${taskId}`, {
+            method: "DELETE",
+        });
+        setTasks((newTasks) => newTasks.filter((task) => task.id !== taskId));
+};
+
+  const deleteAllTasks = async () => {
+    for(const task of tasks) {
+      await fetch(`https://playground.4geeks.com/todo/todos/${task.id}`, {
+      method: "DELETE",
+      });
+    }
+    setTasks([]);
   }
 
     const handleAddTask = (e) => {
@@ -43,9 +57,9 @@ const TodoList = () => {
 		}
 	};
 
-    //funcion para borrar tareas
   const handleRemoveTask = (index) => {
-		setTasks(tasks.filter((_, i) => i !== index));
+    const taskToDelete = tasks[index];
+		deleteTask(taskToDelete.id);
 	};
 
     return (
@@ -62,6 +76,7 @@ const TodoList = () => {
           ))
         )}
       </div>
+      <button onClick={deleteAllTasks}>Eliminar todas las tareas</button>
     </div>
     );
 }
